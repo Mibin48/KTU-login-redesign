@@ -1,0 +1,576 @@
+/* ================================================================
+   KTU Portal — Design System & Global Styles
+   CSS Custom Properties for Theming + Dark Mode
+   ================================================================ */
+
+/* ---------- Theme Tokens ---------- */
+:root {
+  /* Colors */
+  --ktu-primary: #0A4D3C;
+  --ktu-primary-rgb: 10, 77, 60;
+  --ktu-dark: #073429;
+  --ktu-accent: #D4AF37;
+  --ktu-accent-rgb: 212, 175, 55;
+  --ktu-cream: #FAF8F5;
+  --ktu-muted: #6B6B6B;
+  --ktu-error: #C53030;
+  --ktu-success: #2F855A;
+  --ktu-surface: #1A1A1A;
+  --ktu-warning: #D69E2E;
+
+  /* Surfaces */
+  --bg-page: #FAF8F5;
+  --bg-card: #FFFFFF;
+  --bg-input: #FAFAFA;
+  --bg-input-hover: #F5F5F5;
+  --bg-pill: #F4F4F5;
+  --bg-help-card: #F9FAFB;
+  --bg-captcha: #F9FAFB;
+  --bg-error-banner: linear-gradient(135deg, #FFF5F5 0%, #FED7D7 100%);
+  --bg-warning-banner: linear-gradient(135deg, #FFFFF0 0%, #FEFCBF 100%);
+
+  /* Borders */
+  --border-default: #E5E7EB;
+  --border-input: #D1D5DB;
+  --border-input-focus: var(--ktu-primary);
+  --border-error: var(--ktu-error);
+
+  /* Text */
+  --text-primary: #1A1A1A;
+  --text-secondary: #6B6B6B;
+  --text-muted: rgba(107, 107, 107, 0.6);
+  --text-on-primary: #FFFFFF;
+  --text-link: var(--ktu-primary);
+
+  /* Shadows */
+  --shadow-card: 0 25px 60px -12px rgba(0, 0, 0, 0.12), 0 8px 24px -8px rgba(0, 0, 0, 0.08);
+  --shadow-btn: 0 8px 28px -4px rgba(var(--ktu-primary-rgb), 0.35);
+  --shadow-btn-hover: 0 14px 40px -4px rgba(var(--ktu-primary-rgb), 0.45);
+  --shadow-input-focus: 0 0 0 4px rgba(var(--ktu-primary-rgb), 0.15);
+  --shadow-gold-focus: 0 0 0 3px rgba(var(--ktu-accent-rgb), 0.4);
+  --shadow-help-hover: 0 8px 24px -4px rgba(var(--ktu-primary-rgb), 0.25);
+
+  /* Radii */
+  --radius-card: 24px;
+  --radius-input: 12px;
+  --radius-pill: 9999px;
+  --radius-btn: 12px;
+
+  /* Transitions */
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-fast: 0.15s;
+  --duration-normal: 0.3s;
+  --duration-slow: 0.5s;
+}
+
+/* ---------- Dark Mode ---------- */
+[data-theme="dark"] {
+  --bg-page: #111111;
+  --bg-card: #1E1E1E;
+  --bg-input: #2A2A2A;
+  --bg-input-hover: #333333;
+  --bg-pill: #2A2A2A;
+  --bg-help-card: #252525;
+  --bg-captcha: #252525;
+  --bg-error-banner: linear-gradient(135deg, #2D1B1B 0%, #3D2020 100%);
+  --bg-warning-banner: linear-gradient(135deg, #2D2A1B 0%, #3D3520 100%);
+
+  --border-default: #333333;
+  --border-input: #444444;
+
+  --text-primary: #F0F0F0;
+  --text-secondary: #9CA3AF;
+  --text-muted: rgba(156, 163, 175, 0.6);
+
+  --shadow-card: 0 25px 60px -12px rgba(0, 0, 0, 0.5), 0 8px 24px -8px rgba(0, 0, 0, 0.3);
+  --shadow-input-focus: 0 0 0 4px rgba(var(--ktu-primary-rgb), 0.15);
+  --shadow-help-hover: 0 8px 24px -4px rgba(var(--ktu-primary-rgb), 0.35);
+}
+
+/* ---------- Reset ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  background-color: var(--bg-page);
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+  transition: background-color var(--duration-normal) var(--ease-smooth),
+    color var(--duration-normal) var(--ease-smooth);
+}
+
+h1,
+h2,
+h3,
+h4,
+.font-serif {
+  font-family: 'Crimson Pro', Georgia, serif;
+}
+
+/* ---------- Selection ---------- */
+::selection {
+  background-color: rgba(var(--ktu-primary-rgb), 0.15);
+  color: var(--ktu-primary);
+}
+
+/* ---------- Skip to Main Content ---------- */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  padding: 12px 24px;
+  background: var(--ktu-primary);
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+  border-radius: 0 0 12px 12px;
+  text-decoration: none;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 0;
+  outline: 3px solid var(--ktu-accent);
+  outline-offset: 2px;
+}
+
+/* ---------- Focus / Accessibility ---------- */
+:focus-visible {
+  outline: 3px solid var(--ktu-accent) !important;
+  outline-offset: 2px;
+}
+
+input:focus {
+  outline: none !important;
+}
+
+button:focus-visible {
+  outline: 3px solid var(--ktu-accent) !important;
+  outline-offset: 2px;
+}
+
+/* ================================================================
+   ANIMATIONS
+   ================================================================ */
+
+/* Page entrance */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(32px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.7s var(--ease-out-expo) forwards;
+}
+
+/* Slide down (errors) */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-down {
+  animation: slideDown 0.35s var(--ease-spring) forwards;
+}
+
+/* Generic fade-in */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.45s ease-out forwards;
+}
+
+/* Slide in from left */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft 0.5s var(--ease-out-expo) forwards;
+  opacity: 0;
+  /* start hidden */
+}
+
+/* Floating decorative */
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  25% {
+    transform: translateY(-14px) rotate(2deg);
+  }
+
+  50% {
+    transform: translateY(-22px) rotate(5deg);
+  }
+
+  75% {
+    transform: translateY(-10px) rotate(2deg);
+  }
+}
+
+.floating {
+  animation: float 18s ease-in-out infinite;
+}
+
+.floating-slow {
+  animation: float 26s ease-in-out infinite reverse;
+}
+
+.floating-med {
+  animation: float 14s ease-in-out infinite 3s;
+}
+
+/* Pulse glow */
+@keyframes pulseGlow {
+
+  0%,
+  100% {
+    box-shadow: 0 8px 32px rgba(var(--ktu-accent-rgb), 0.3);
+  }
+
+  50% {
+    box-shadow: 0 8px 32px rgba(var(--ktu-accent-rgb), 0.15), 0 0 24px 6px rgba(var(--ktu-accent-rgb), 0.12);
+  }
+}
+
+.pulse-glow {
+  animation: pulseGlow 3.5s ease-in-out infinite;
+}
+
+/* Spinner */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 0.8s linear infinite;
+}
+
+/* Shake on error */
+@keyframes shake {
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-4px);
+  }
+
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(4px);
+  }
+}
+
+.animate-shake {
+  animation: shake 0.45s cubic-bezier(.36, .07, .19, .97) both;
+}
+
+/* Scale in (captcha, modals) */
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.3s var(--ease-spring) forwards;
+}
+
+/* Checkmark spring */
+@keyframes checkSpring {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+
+  60% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-check-spring {
+  animation: checkSpring 0.4s var(--ease-spring) forwards;
+}
+
+/* Shimmer sweep for button */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Password strength bar grow */
+@keyframes strengthGrow {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* Stagger delay utility classes */
+.stagger-1 {
+  animation-delay: 0.3s;
+}
+
+.stagger-2 {
+  animation-delay: 0.4s;
+}
+
+.stagger-3 {
+  animation-delay: 0.5s;
+}
+
+.stagger-4 {
+  animation-delay: 0.6s;
+}
+
+/* Fade-in up stagger (features) */
+@keyframes fadeInUpFeature {
+  from {
+    opacity: 0;
+    transform: translateX(-20px) translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0) translateY(0);
+  }
+}
+
+.feature-enter {
+  opacity: 0;
+  animation: fadeInUpFeature 0.55s var(--ease-out-expo) forwards;
+}
+
+/* Modal overlay */
+@keyframes overlayIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* ================================================================
+   UTILITY CLASSES
+   ================================================================ */
+
+/* Shimmer overlay for buttons */
+.btn-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-shimmer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg,
+      transparent 40%,
+      rgba(255, 255, 255, 0.18) 45%,
+      rgba(255, 255, 255, 0.25) 50%,
+      rgba(255, 255, 255, 0.18) 55%,
+      transparent 60%);
+  transform: translateX(-100%);
+  pointer-events: none;
+}
+
+.btn-shimmer:hover::after {
+  animation: shimmer 0.75s ease-in-out forwards;
+}
+
+/* Password strength bar */
+.strength-bar {
+  height: 4px;
+  border-radius: 2px;
+  transform-origin: left;
+  transition: width 0.3s var(--ease-smooth), background-color 0.3s var(--ease-smooth);
+}
+
+/* Role selector sliding indicator */
+.role-selector {
+  position: relative;
+}
+
+.role-indicator {
+  position: absolute;
+  top: 6px;
+  bottom: 6px;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, var(--ktu-primary) 0%, #0D6E51 100%);
+  box-shadow: 0 4px 16px rgba(var(--ktu-primary-rgb), 0.25);
+  transition: left 0.3s var(--ease-spring), width 0.3s var(--ease-spring);
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Validation checkmark icon */
+.valid-check {
+  color: var(--ktu-success);
+  transition: opacity 0.2s, transform 0.3s var(--ease-spring);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(var(--ktu-primary-rgb), 0.15);
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(var(--ktu-primary-rgb), 0.3);
+}
+
+/* High contrast mode */
+@media (forced-colors: active) {
+  .btn-shimmer::after {
+    display: none;
+  }
+
+  .pulse-glow {
+    animation: none;
+  }
+
+  .floating,
+  .floating-slow,
+  .floating-med {
+    animation: none;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .floating,
+  .floating-slow,
+  .floating-med {
+    animation: none !important;
+  }
+
+  .pulse-glow {
+    animation: none !important;
+  }
+}
+
+/* Print styles */
+@media print {
+
+  .floating,
+  .floating-slow,
+  .floating-med,
+  .pulse-glow,
+  .btn-shimmer::after {
+    display: none !important;
+  }
+}

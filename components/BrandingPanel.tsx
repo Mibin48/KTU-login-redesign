@@ -124,20 +124,27 @@ const BrandingPanel: React.FC = () => {
         {/* Top: Logo + Branding */}
         <div>
           {/* Logo Badge */}
+          {/* Logo Badge */}
           <div
-            className="pulse-glow w-[70px] h-[70px] rounded-full flex items-center justify-center mb-10 cursor-default"
+            className="w-[90px] h-[90px] flex items-center justify-center mb-8 cursor-default"
             style={{
-              background: 'linear-gradient(135deg, #D4AF37 0%, #C5A028 100%)',
               transition: 'transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)',
             }}
             onMouseEnter={(e) => {
-              (e.currentTarget as HTMLDivElement).style.transform = 'scale(1.12) rotate(-5deg)';
+              (e.currentTarget as HTMLDivElement).style.transform = 'scale(1.1) rotate(-2deg)';
             }}
             onMouseLeave={(e) => {
               (e.currentTarget as HTMLDivElement).style.transform = 'scale(1) rotate(0deg)';
             }}
           >
-            <GraduationCap size={36} color="#0A4D3C" strokeWidth={2.2} />
+            <img
+              src="/ktu-logo.png"
+              alt="KTU Logo"
+              className="w-full h-full object-contain rounded-2xl"
+              style={{
+                filter: 'drop-shadow(0 0 2px #fff) drop-shadow(0 0 1px #fff)',
+              }}
+            />
           </div>
 
           {/* University Name */}

@@ -648,7 +648,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ darkMode }) => {
           </a>
         </div>
         <p className="text-[14px] text-center font-medium leading-relaxed" style={{ color: 'var(--text-muted)' }}>
-          © 2024 APJ Abdul Kalam Technological University.
+          © 2014 APJ Abdul Kalam Technological University.
           <br />
           This system is monitored. Unauthorized access is prohibited.
         </p>

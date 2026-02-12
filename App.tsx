@@ -78,19 +78,20 @@ const App: React.FC = () => {
         >
           <div className="flex items-center gap-4">
             <div
-              className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0"
-              style={{
-                background: 'linear-gradient(135deg, #D4AF37 0%, #C5A028 100%)',
-              }}
+              className="w-12 h-12 flex items-center justify-center flex-shrink-0"
             >
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1E3A5F" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
-                <path d="M6 12v5c3 3 9 3 12 0v-5" />
-              </svg>
+              <img
+                src="/ktu-logo.png"
+                alt="KTU Logo"
+                className="w-full h-full object-contain"
+                style={{
+                  filter: 'drop-shadow(0 0 1px #fff) drop-shadow(0 0 1px #fff)',
+                }}
+              />
             </div>
             <div>
               <h1 className="text-white font-serif font-bold text-lg leading-tight">
-                APJ Abdul Kalam <span style={{ color: '#D4AF37' }}>University</span>
+                APJ Abdul Kalam <span style={{ color: '#D4AF37' }}>Technological University</span>
               </h1>
               <p className="text-xs font-medium mt-0.5" style={{ color: 'rgba(255,255,255,0.6)' }}>
                 Secure Governance Portal

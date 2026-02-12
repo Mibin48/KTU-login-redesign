@@ -63,6 +63,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ darkMode }) => {
   const [captchaCode, setCaptchaCode] = useState(generateCaptcha());
   const [shakeField, setShakeField] = useState<string | null>(null);
   const [formDisabled, setFormDisabled] = useState(false);
+  const [showCaptcha, setShowCaptcha] = useState(false);
 
   /* refs */
   const usernameRef = useRef<HTMLInputElement>(null);
@@ -93,8 +94,10 @@ const LoginForm: React.FC<LoginFormProps> = ({ darkMode }) => {
     if (btn && indicator) {
       indicator.style.left = `${btn.offsetLeft}px`;
       indicator.style.width = `${btn.offsetWidth}px`;
+      indicator.style.top = `${btn.offsetTop}px`;
+      indicator.style.height = `${btn.offsetHeight}px`;
     }
-  }, [role, roles]);
+  }, [role, roles, /* dependency on screen size might be needed strictly speaking, but usually rerender covers it */]);
 
   const refreshCaptcha = useCallback(() => {
     setCaptchaCode(generateCaptcha());
@@ -130,7 +133,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ darkMode }) => {
   const roleConfig = useMemo(() => ({
     Student: {
       headerSub: 'Secure access for Enrolled Students',
-      label: 'University Register No',
+      label: 'University ID / Register Number',
       placeholder: 'e.g. TVA20CS045',
     },
     Faculty: {
@@ -155,7 +158,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ darkMode }) => {
 
     if (!validateFields()) return;
 
-    if (captchaValue.toUpperCase() !== captchaCode) {
+    if (showCaptcha && captchaValue.toUpperCase() !== captchaCode) {
       setError('Invalid captcha. Please try again.');
       refreshCaptcha();
       return;
@@ -173,6 +176,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ darkMode }) => {
         "Invalid credentials. Please check your username and password, or reset your password if you've forgotten it."
       );
       setFailedAttempts((p) => p + 1);
+      setShowCaptcha(true);
       setPassword(''); // clear for security
       refreshCaptcha();
     }
@@ -279,7 +283,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ darkMode }) => {
 
       {/* ── Role Selector with sliding indicator ── */}
       <div
-        className="role-selector relative flex p-1.5 rounded-full mb-7 lg:mb-9 w-full max-w-sm mx-auto lg:mx-0"
+        className="role-selector relative flex flex-col sm:flex-row p-1.5 rounded-[20px] sm:rounded-full mb-7 lg:mb-9 w-full max-w-sm mx-auto lg:mx-0"
         style={{ background: 'var(--bg-pill)', transition: 'background 0.3s ease' }}
       >
         {/* Sliding background indicator */}
@@ -332,7 +336,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ darkMode }) => {
               }}
             >
               <div className="pl-4 flex items-center pointer-events-none">
-                <User size={20} strokeWidth={2} style={{ color: 'var(--text-secondary)', transition: 'color 0.3s ease' }} />
+                <User size={20} strokeWidth={2} style={{ color: 'var(--icon-secondary)', transition: 'color 0.3s ease' }} />
               </div>
               <input
                 ref={usernameRef}
@@ -372,7 +376,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ darkMode }) => {
               <a
                 href="#"
                 className="text-sm font-bold underline-offset-4 hover:underline"
-                style={{ color: 'var(--ktu-primary)', transition: 'color 0.2s ease' }}
+                style={{ color: 'var(--text-link)', transition: 'color 0.2s ease' }}
                 onClick={(e) => e.preventDefault()}
               >
                 Forgot Password?
@@ -398,7 +402,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ darkMode }) => {
               }}
             >
               <div className="pl-4 flex items-center pointer-events-none">
-                <Lock size={20} strokeWidth={2} style={{ color: 'var(--text-secondary)', transition: 'color 0.3s ease' }} />
+                <Lock size={20} strokeWidth={2} style={{ color: 'var(--icon-secondary)', transition: 'color 0.3s ease' }} />
               </div>
               <input
                 id="password"
@@ -426,7 +430,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ darkMode }) => {
                 className="absolute right-0 pr-4 flex items-center h-full cursor-pointer"
                 onClick={() => setShowPassword(!showPassword)}
                 aria-label={showPassword ? 'Hide password' : 'Show password'}
-                style={{ minWidth: '44px', minHeight: '44px', color: 'var(--text-secondary)', transition: 'color 0.2s ease' }}
+                style={{ minWidth: '44px', minHeight: '44px', color: 'var(--icon-secondary)', transition: 'color 0.2s ease' }}
                 tabIndex={0}
               >
                 {showPassword ? <EyeOff size={20} strokeWidth={2} /> : <Eye size={20} strokeWidth={2} />}
@@ -492,72 +496,74 @@ const LoginForm: React.FC<LoginFormProps> = ({ darkMode }) => {
             </span>
           </div>
 
-          {/* Captcha */}
-          <div
-            className="animate-scale-in space-y-3 p-4 rounded-xl"
-            style={{ background: 'var(--bg-captcha)', border: '1px solid var(--border-default)' }}
-          >
-            <div className="flex items-center justify-between">
-              <div
-                className="flex items-center gap-3 px-5 py-2.5 rounded-lg select-none"
-                style={{ background: 'var(--bg-card)', border: '2px dashed var(--border-input)' }}
-              >
-                <span
-                  className="text-xl font-bold tracking-[0.25em] font-mono"
-                  style={{
-                    color: 'var(--ktu-primary)',
-                    textDecoration: 'line-through',
-                    textDecorationColor: 'var(--ktu-accent)',
-                    textDecorationThickness: '2px',
-                  }}
+          {/* Captcha - Conditional Render */}
+          {showCaptcha && (
+            <div
+              className="animate-slide-down space-y-3 p-4 rounded-xl"
+              style={{ background: 'var(--bg-captcha)', border: '1px solid var(--border-default)' }}
+            >
+              <div className="flex items-center justify-between">
+                <div
+                  className="flex items-center gap-3 px-5 py-2.5 rounded-lg select-none"
+                  style={{ background: 'var(--bg-card)', border: '2px dashed var(--border-input)' }}
                 >
-                  {captchaCode}
-                </span>
-                <button
-                  type="button"
-                  onClick={refreshCaptcha}
-                  className="cursor-pointer flex items-center justify-center"
-                  aria-label="Refresh captcha"
-                  style={{
-                    minWidth: '44px', minHeight: '44px',
-                    color: 'var(--text-secondary)',
-                    transition: 'color 0.2s ease, transform 0.5s ease',
-                  }}
-                  onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLButtonElement).style.color = 'var(--ktu-primary)';
-                    (e.currentTarget as HTMLButtonElement).style.transform = 'rotate(180deg)';
-                  }}
-                  onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLButtonElement).style.color = 'var(--text-secondary)';
-                    (e.currentTarget as HTMLButtonElement).style.transform = 'rotate(0deg)';
-                  }}
-                >
-                  <RefreshCw size={18} strokeWidth={2.2} />
-                </button>
+                  <span
+                    className="text-xl font-bold tracking-[0.25em] font-mono"
+                    style={{
+                      color: 'var(--ktu-primary)',
+                      textDecoration: 'line-through',
+                      textDecorationColor: 'var(--ktu-accent)',
+                      textDecorationThickness: '2px',
+                    }}
+                  >
+                    {captchaCode}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={refreshCaptcha}
+                    className="cursor-pointer flex items-center justify-center"
+                    aria-label="Refresh captcha"
+                    style={{
+                      minWidth: '44px', minHeight: '44px',
+                      color: 'var(--icon-secondary)',
+                      transition: 'color 0.2s ease, transform 0.5s ease',
+                    }}
+                    onMouseEnter={(e) => {
+                      (e.currentTarget as HTMLButtonElement).style.color = 'var(--ktu-primary)';
+                      (e.currentTarget as HTMLButtonElement).style.transform = 'rotate(180deg)';
+                    }}
+                    onMouseLeave={(e) => {
+                      (e.currentTarget as HTMLButtonElement).style.color = 'var(--icon-secondary)';
+                      (e.currentTarget as HTMLButtonElement).style.transform = 'rotate(0deg)';
+                    }}
+                  >
+                    <RefreshCw size={18} strokeWidth={2.2} />
+                  </button>
+                </div>
+                <p className="text-xs font-bold max-w-[120px] text-right leading-tight" style={{ color: 'var(--text-secondary)' }}>
+                  Security verification required
+                </p>
               </div>
-              <p className="text-xs font-bold max-w-[120px] text-right leading-tight" style={{ color: 'var(--text-secondary)' }}>
-                Security verification required
-              </p>
+              <input
+                type="text"
+                required
+                className="block w-full h-[48px] px-4 border-2 rounded-lg outline-none text-sm font-bold tracking-[0.2em]"
+                style={{
+                  background: 'var(--bg-card)',
+                  borderColor: 'var(--border-input)',
+                  color: 'var(--text-primary)',
+                  transition: 'border-color 0.3s ease',
+                }}
+                onFocus={(e) => { e.currentTarget.style.borderColor = 'var(--ktu-primary)'; }}
+                onBlur={(e) => { e.currentTarget.style.borderColor = 'var(--border-input)'; }}
+                placeholder="Enter text shown above"
+                value={captchaValue}
+                onChange={(e) => setCaptchaValue(e.target.value)}
+                aria-label="Captcha verification code"
+                autoComplete="off"
+              />
             </div>
-            <input
-              type="text"
-              required
-              className="block w-full h-[48px] px-4 border-2 rounded-lg outline-none text-sm font-bold tracking-[0.2em]"
-              style={{
-                background: 'var(--bg-card)',
-                borderColor: 'var(--border-input)',
-                color: 'var(--text-primary)',
-                transition: 'border-color 0.3s ease',
-              }}
-              onFocus={(e) => { e.currentTarget.style.borderColor = 'var(--ktu-primary)'; }}
-              onBlur={(e) => { e.currentTarget.style.borderColor = 'var(--border-input)'; }}
-              placeholder="Enter text shown above"
-              value={captchaValue}
-              onChange={(e) => setCaptchaValue(e.target.value)}
-              aria-label="Captcha verification code"
-              autoComplete="off"
-            />
-          </div>
+          )}
 
           {/* Submit Button */}
           <button
@@ -597,7 +603,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ darkMode }) => {
               </span>
             ) : (
               <>
-                <span className="text-lg">Authenticate & Proceed</span>
+                <span className="text-lg">Sign In to Portal</span>
                 <ArrowRight size={22} strokeWidth={2.2} />
               </>
             )}
@@ -665,14 +671,14 @@ const HelpCard: React.FC<{ icon: React.ReactNode; label: string }> = ({ icon, la
     className="flex items-center gap-3 p-4 rounded-xl group text-left w-full no-underline"
     style={{
       background: 'var(--bg-help-card)',
-      border: '1px solid transparent',
+      border: '1px solid var(--border-help)',
       transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
       textDecoration: 'none',
     }}
     onMouseEnter={(e) => {
       const el = e.currentTarget as HTMLAnchorElement;
       el.style.background = 'linear-gradient(135deg, #1E3A5F 0%, #2C5282 100%)';
-      el.style.transform = 'translateY(-2px)';
+      el.style.transform = 'translateY(-3px)';
       el.style.boxShadow = 'var(--shadow-help-hover)';
       (el.lastChild as HTMLElement).style.color = '#fff';
     }}
@@ -692,7 +698,7 @@ const HelpCard: React.FC<{ icon: React.ReactNode; label: string }> = ({ icon, la
       style={{
         background: 'var(--bg-card)',
         boxShadow: '0 1px 3px rgba(0,0,0,0.06)',
-        color: 'var(--ktu-primary)',
+        color: 'var(--icon-primary)',
         transition: 'transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.3s ease, color 0.3s ease',
       }}
     >

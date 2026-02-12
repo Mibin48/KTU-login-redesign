@@ -28,7 +28,7 @@ const BrandingPanel: React.FC = () => {
     <div
       className="relative h-full w-full flex flex-col justify-between overflow-hidden select-none"
       style={{
-        background: 'linear-gradient(160deg, #1E3A5F 0%, #0F1F3A 60%, #0A1628 100%)',
+        background: 'linear-gradient(160deg, #2C4B6F 0%, #1E3A5F 100%)',
       }}
     >
       {/* ── Inner shadow for depth ── */}
@@ -242,7 +242,7 @@ const BrandingPanel: React.FC = () => {
               className="text-sm font-medium"
               style={{ color: 'rgba(255,255,255,0.35)' }}
             >
-              © 2024 APJ Abdul Kalam Technological University
+              © 2014 APJ Abdul Kalam Technological University
             </p>
             <span
               className="text-xs font-medium animate-fade-in"

@@ -2,7 +2,7 @@
 
 A modern, responsive, and secure login portal designed for APJ Abdul Kalam Technological University (KTU). This application provides a unified entry point for Students, Faculty, and Administrators to access academic records, exam registrations, and other university services.
 
-## 🚀 Features
+##  Features Implemented
 
 *   **Responsive Design**: Optimized for both desktop and mobile devices. A split-layout design features a rich branding panel on larger screens and a focused login form on all devices.
 *   **Role-Based Access**: distinct login flows for **Students**, **Faculty**, and **Admins**.
@@ -15,7 +15,7 @@ A modern, responsive, and secure login portal designed for APJ Abdul Kalam Techn
     *   **Input Validation**: Real-time feedback and error handling.
 *   **Support & Help**: Integrated quick links for User Manuals, Tech Support, and Contact Information.
 
-## 🛠️ Tech Stack
+##  Tech Stack Used in this Project
 
 *   **Framework**: [React](https://react.dev/) (v19)
 *   **Build Tool**: [Vite](https://vitejs.dev/)
@@ -23,7 +23,7 @@ A modern, responsive, and secure login portal designed for APJ Abdul Kalam Techn
 *   **Styling**: [Tailwind CSS](https://tailwindcss.com/) (Inferred from utility classes)
 *   **Icons**: [Lucide React](https://lucide.dev/)
 
-## 📂 Project Structure
+##  Project Structure
 
 ```
 ktu-portal-secure-login/
@@ -40,7 +40,7 @@ ktu-portal-secure-login/
 └── vite.config.ts             # Vite configuration
 ```
 
-## 🏁 Getting Started
+## How to Run This Project?
 
 Follow these steps to set up and run the project locally.
 
@@ -80,10 +80,10 @@ To preview the production build locally:
 npm run preview
 ```
 
-## 🤝 Contributing
+##  Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
-## 📄 License
+##  License
 
 This project is for educational and demonstration purposes. All rights reserved by APJ Abdul Kalam Technological University.

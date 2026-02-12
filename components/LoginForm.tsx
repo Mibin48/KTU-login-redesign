@@ -270,7 +270,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ darkMode }) => {
           className="font-serif font-bold mb-2"
           style={{ fontSize: 'clamp(1.75rem, 3vw, 2.25rem)', color: 'var(--text-primary)' }}
         >
-          Sign in to e-Gov Portal
+          Sign in to e-Governance Portal
         </h2>
         <p className="font-medium text-base lg:text-lg animate-fade-in" key={role} style={{ color: 'var(--text-secondary)' }}>
           {currentConfig.headerSub}
@@ -476,8 +476,8 @@ const LoginForm: React.FC<LoginFormProps> = ({ darkMode }) => {
             <div
               className="w-5 h-5 rounded flex items-center justify-center flex-shrink-0"
               style={{
-                background: rememberMe ? 'linear-gradient(135deg, #0A4D3C 0%, #0D6E51 100%)' : 'var(--bg-card)',
-                border: rememberMe ? '2px solid #0A4D3C' : '2px solid var(--border-input)',
+                background: rememberMe ? 'linear-gradient(135deg, #1E3A5F 0%, #2C5282 100%)' : 'var(--bg-card)',
+                border: rememberMe ? '2px solid #1E3A5F' : '2px solid var(--border-input)',
                 transition: 'all 0.2s ease',
               }}
             >
@@ -566,8 +566,8 @@ const LoginForm: React.FC<LoginFormProps> = ({ darkMode }) => {
             className={`btn-shimmer w-full h-[56px] rounded-xl font-bold text-white flex items-center justify-center gap-3 cursor-pointer ${loading ? 'opacity-80 cursor-not-allowed' : ''
               }`}
             style={{
-              background: 'linear-gradient(135deg, #0A4D3C 0%, #0D6E51 100%)',
-              boxShadow: loading ? '0 4px 12px rgba(10,77,60,0.15)' : 'var(--shadow-btn)',
+              background: 'linear-gradient(135deg, #1E3A5F 0%, #2C5282 100%)',
+              boxShadow: loading ? '0 4px 12px rgba(30,58,95,0.15)' : 'var(--shadow-btn)',
               transform: 'translateY(0)',
               transition: 'transform 0.2s ease, box-shadow 0.2s ease',
               minHeight: '56px',
@@ -580,7 +580,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ darkMode }) => {
             }}
             onMouseLeave={(e) => {
               (e.currentTarget as HTMLButtonElement).style.transform = 'translateY(0)';
-              (e.currentTarget as HTMLButtonElement).style.boxShadow = loading ? '0 4px 12px rgba(10,77,60,0.15)' : 'var(--shadow-btn)';
+              (e.currentTarget as HTMLButtonElement).style.boxShadow = loading ? '0 4px 12px rgba(30,58,95,0.15)' : 'var(--shadow-btn)';
             }}
             onMouseDown={(e) => {
               if (!loading) (e.currentTarget as HTMLButtonElement).style.transform = 'scale(0.98)';
@@ -671,15 +671,17 @@ const HelpCard: React.FC<{ icon: React.ReactNode; label: string }> = ({ icon, la
     }}
     onMouseEnter={(e) => {
       const el = e.currentTarget as HTMLAnchorElement;
-      el.style.background = 'linear-gradient(135deg, #0A4D3C 0%, #0D6E51 100%)';
+      el.style.background = 'linear-gradient(135deg, #1E3A5F 0%, #2C5282 100%)';
       el.style.transform = 'translateY(-2px)';
       el.style.boxShadow = 'var(--shadow-help-hover)';
+      (el.lastChild as HTMLElement).style.color = '#fff';
     }}
     onMouseLeave={(e) => {
       const el = e.currentTarget as HTMLAnchorElement;
       el.style.background = 'var(--bg-help-card)';
       el.style.transform = 'translateY(0)';
       el.style.boxShadow = 'none';
+      (el.lastChild as HTMLElement).style.color = 'var(--text-primary)';
     }}
     aria-label={label}
     target="_blank"

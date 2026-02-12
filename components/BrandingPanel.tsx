@@ -28,7 +28,7 @@ const BrandingPanel: React.FC = () => {
     <div
       className="relative h-full w-full flex flex-col justify-between overflow-hidden select-none"
       style={{
-        background: 'linear-gradient(160deg, #0A4D3C 0%, #073429 60%, #062e24 100%)',
+        background: 'linear-gradient(160deg, #1E3A5F 0%, #0F1F3A 60%, #0A1628 100%)',
       }}
     >
       {/* ── Inner shadow for depth ── */}
@@ -65,7 +65,7 @@ const BrandingPanel: React.FC = () => {
           right: '-14%',
           width: '340px',
           height: '340px',
-          background: 'radial-gradient(circle, rgba(212,175,55,0.08) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(201,169,97,0.08) 0%, transparent 70%)',
         }}
       />
       <div
@@ -86,7 +86,7 @@ const BrandingPanel: React.FC = () => {
           left: '60%',
           width: '60px',
           height: '60px',
-          background: 'radial-gradient(circle, rgba(212,175,55,0.06) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(201,169,97,0.06) 0%, transparent 70%)',
           animationDuration: '12s',
           animationDelay: '2s',
         }}
@@ -108,7 +108,7 @@ const BrandingPanel: React.FC = () => {
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            'linear-gradient(135deg, transparent 46%, rgba(212,175,55,0.03) 47%, rgba(212,175,55,0.03) 53%, transparent 54%)',
+            'linear-gradient(135deg, transparent 46%, rgba(201,169,97,0.03) 47%, rgba(201,169,97,0.03) 53%, transparent 54%)',
         }}
       />
       <div
@@ -154,7 +154,7 @@ const BrandingPanel: React.FC = () => {
           >
             APJ Abdul Kalam
             <br />
-            <span style={{ color: '#D4AF37' }}>Technological University</span>
+            <span style={{ color: '#C9A961' }}>Technological University</span>
           </h1>
 
           <p
@@ -180,7 +180,7 @@ const BrandingPanel: React.FC = () => {
                   }}
                   onMouseEnter={(e) => {
                     const el = e.currentTarget as HTMLDivElement;
-                    el.style.background = 'rgba(212,175,55,0.2)';
+                    el.style.background = 'rgba(201,169,97,0.25)';
                     el.style.transform = 'scale(1.15)';
                   }}
                   onMouseLeave={(e) => {
@@ -191,7 +191,7 @@ const BrandingPanel: React.FC = () => {
                 >
                   <CheckCircle2
                     size={18}
-                    color="#D4AF37"
+                    color="#C9A961"
                     strokeWidth={2.4}
                   />
                 </div>
@@ -224,7 +224,7 @@ const BrandingPanel: React.FC = () => {
               (e.currentTarget as HTMLDivElement).style.background = 'rgba(255,255,255,0.06)';
             }}
           >
-            <ShieldCheck size={18} color="#D4AF37" strokeWidth={2.2} />
+            <ShieldCheck size={18} color="#C9A961" strokeWidth={2.2} />
             <span
               className="text-xs font-semibold tracking-[0.15em] uppercase"
               style={{ color: 'rgba(255,255,255,0.85)' }}

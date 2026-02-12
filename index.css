@@ -6,12 +6,12 @@
 /* ---------- Theme Tokens ---------- */
 :root {
   /* Colors */
-  --ktu-primary: #0A4D3C;
-  --ktu-primary-rgb: 10, 77, 60;
-  --ktu-dark: #073429;
-  --ktu-accent: #D4AF37;
-  --ktu-accent-rgb: 212, 175, 55;
-  --ktu-cream: #FAF8F5;
+  --ktu-primary: #1E3A5F;
+  --ktu-primary-rgb: 30, 58, 95;
+  --ktu-dark: #0F1F3A;
+  --ktu-accent: #C9A961;
+  --ktu-accent-rgb: 201, 169, 97;
+  --ktu-cream: #F8F9FA;
   --ktu-muted: #6B6B6B;
   --ktu-error: #C53030;
   --ktu-success: #2F855A;
@@ -19,7 +19,7 @@
   --ktu-warning: #D69E2E;
 
   /* Surfaces */
-  --bg-page: #FAF8F5;
+  --bg-page: radial-gradient(at 0% 0%, rgba(30, 58, 95, 0.08) 0px, transparent 50%), radial-gradient(at 100% 0%, rgba(201, 169, 97, 0.05) 0px, transparent 50%), radial-gradient(at 100% 100%, rgba(30, 58, 95, 0.08) 0px, transparent 50%), radial-gradient(at 0% 100%, rgba(201, 169, 97, 0.05) 0px, transparent 50%), #F8F9FA;
   --bg-card: #FFFFFF;
   --bg-input: #FAFAFA;
   --bg-input-hover: #F5F5F5;
@@ -30,8 +30,8 @@
   --bg-warning-banner: linear-gradient(135deg, #FFFFF0 0%, #FEFCBF 100%);
 
   /* Borders */
-  --border-default: #E5E7EB;
-  --border-input: #D1D5DB;
+  --border-default: #E2E8F0;
+  --border-input: #E2E8F0;
   --border-input-focus: var(--ktu-primary);
   --border-error: var(--ktu-error);
 
@@ -44,11 +44,11 @@
 
   /* Shadows */
   --shadow-card: 0 25px 60px -12px rgba(0, 0, 0, 0.12), 0 8px 24px -8px rgba(0, 0, 0, 0.08);
-  --shadow-btn: 0 8px 28px -4px rgba(var(--ktu-primary-rgb), 0.35);
-  --shadow-btn-hover: 0 14px 40px -4px rgba(var(--ktu-primary-rgb), 0.45);
-  --shadow-input-focus: 0 0 0 4px rgba(var(--ktu-primary-rgb), 0.15);
+  --shadow-btn: 0 8px 24px -4px rgba(var(--ktu-primary-rgb), 0.12);
+  --shadow-btn-hover: 0 12px 32px -4px rgba(var(--ktu-primary-rgb), 0.25);
+  --shadow-input-focus: 0 0 0 4px rgba(var(--ktu-primary-rgb), 0.08);
   --shadow-gold-focus: 0 0 0 3px rgba(var(--ktu-accent-rgb), 0.4);
-  --shadow-help-hover: 0 8px 24px -4px rgba(var(--ktu-primary-rgb), 0.25);
+  --shadow-help-hover: 0 8px 24px -4px rgba(var(--ktu-primary-rgb), 0.15);
 
   /* Radii */
   --radius-card: 24px;
@@ -107,11 +107,11 @@ html {
 
 body {
   font-family: 'DM Sans', system-ui, sans-serif;
-  background-color: var(--bg-page);
+  background: var(--bg-page);
   color: var(--text-primary);
   min-height: 100vh;
   overflow-x: hidden;
-  transition: background-color var(--duration-normal) var(--ease-smooth),
+  transition: background var(--duration-normal) var(--ease-smooth),
     color var(--duration-normal) var(--ease-smooth);
 }
 
@@ -493,7 +493,7 @@ button:focus-visible {
   top: 6px;
   bottom: 6px;
   border-radius: 9999px;
-  background: linear-gradient(135deg, var(--ktu-primary) 0%, #0D6E51 100%);
+  background: linear-gradient(135deg, var(--ktu-primary) 0%, #2C5282 100%);
   box-shadow: 0 4px 16px rgba(var(--ktu-primary-rgb), 0.25);
   transition: left 0.3s var(--ease-spring), width 0.3s var(--ease-spring);
   z-index: 0;

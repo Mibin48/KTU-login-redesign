@@ -56,8 +56,8 @@ const App: React.FC = () => {
         style={{
           background: darkMode
             ? 'rgba(255,255,255,0.1)'
-            : 'rgba(10, 77, 60, 0.08)',
-          border: `1px solid ${darkMode ? 'rgba(255,255,255,0.15)' : 'rgba(10,77,60,0.12)'}`,
+            : 'rgba(30, 58, 95, 0.08)',
+          border: `1px solid ${darkMode ? 'rgba(255,255,255,0.15)' : 'rgba(30,58,95,0.12)'}`,
           backdropFilter: 'blur(12px)',
           transition: 'all 0.3s ease',
         }}
@@ -67,7 +67,7 @@ const App: React.FC = () => {
         {darkMode ? (
           <Sun size={18} style={{ color: '#D4AF37' }} strokeWidth={2.2} />
         ) : (
-          <Moon size={18} style={{ color: '#0A4D3C' }} strokeWidth={2.2} />
+          <Moon size={18} style={{ color: '#1E3A5F' }} strokeWidth={2.2} />
         )}
       </button>
 
@@ -95,7 +95,7 @@ const App: React.FC = () => {
         <div
           className="lg:hidden w-full py-5 px-6 flex items-center gap-4"
           style={{
-            background: 'linear-gradient(135deg, #0A4D3C 0%, #073429 100%)',
+            background: 'linear-gradient(135deg, #1E3A5F 0%, #0F1F3A 100%)',
           }}
         >
           <div
@@ -104,7 +104,7 @@ const App: React.FC = () => {
               background: 'linear-gradient(135deg, #D4AF37 0%, #C5A028 100%)',
             }}
           >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0A4D3C" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1E3A5F" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
               <path d="M6 12v5c3 3 9 3 12 0v-5" />
             </svg>
@@ -169,7 +169,7 @@ const App: React.FC = () => {
               onClick={dismissSession}
               className="w-full h-12 rounded-xl font-bold text-white cursor-pointer btn-shimmer"
               style={{
-                background: 'linear-gradient(135deg, #0A4D3C 0%, #0D6E51 100%)',
+                background: 'linear-gradient(135deg, #1E3A5F 0%, #2C5282 100%)',
                 boxShadow: 'var(--shadow-btn)',
               }}
             >

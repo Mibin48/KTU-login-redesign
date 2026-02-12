@@ -49,32 +49,10 @@ const App: React.FC = () => {
       className="min-h-screen w-full flex items-center justify-center p-4 md:p-8 relative"
       style={{ background: 'var(--bg-page)', transition: 'background 0.3s ease' }}
     >
-      {/* Dark Mode Toggle */}
-      <button
-        onClick={toggleDark}
-        className="fixed top-4 right-4 z-50 w-11 h-11 rounded-full flex items-center justify-center cursor-pointer"
-        style={{
-          background: darkMode
-            ? 'rgba(255,255,255,0.1)'
-            : 'rgba(30, 58, 95, 0.08)',
-          border: `1px solid ${darkMode ? 'rgba(255,255,255,0.15)' : 'rgba(30,58,95,0.12)'}`,
-          backdropFilter: 'blur(12px)',
-          transition: 'all 0.3s ease',
-        }}
-        aria-label={darkMode ? 'Switch to light mode' : 'Switch to dark mode'}
-        title={darkMode ? 'Light mode' : 'Dark mode'}
-      >
-        {darkMode ? (
-          <Sun size={18} style={{ color: '#D4AF37' }} strokeWidth={2.2} />
-        ) : (
-          <Moon size={18} style={{ color: '#1E3A5F' }} strokeWidth={2.2} />
-        )}
-      </button>
-
       {/* Main Card */}
       <main
         id="main-content"
-        className="w-full max-w-[1200px] overflow-hidden flex flex-col lg:flex-row animate-fade-in-up"
+        className="relative w-full max-w-[1200px] overflow-hidden flex flex-col lg:flex-row animate-fade-in-up"
         style={{
           background: 'var(--bg-card)',
           borderRadius: 'var(--radius-card)',
@@ -93,34 +71,80 @@ const App: React.FC = () => {
 
         {/* Mobile Top Banner (visible only on small screens) */}
         <div
-          className="lg:hidden w-full py-5 px-6 flex items-center gap-4"
+          className="lg:hidden w-full py-5 px-6 flex items-center justify-between"
           style={{
             background: 'linear-gradient(135deg, #1E3A5F 0%, #0F1F3A 100%)',
           }}
         >
-          <div
-            className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0"
+          <div className="flex items-center gap-4">
+            <div
+              className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0"
+              style={{
+                background: 'linear-gradient(135deg, #D4AF37 0%, #C5A028 100%)',
+              }}
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1E3A5F" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                <path d="M6 12v5c3 3 9 3 12 0v-5" />
+              </svg>
+            </div>
+            <div>
+              <h1 className="text-white font-serif font-bold text-lg leading-tight">
+                APJ Abdul Kalam <span style={{ color: '#D4AF37' }}>University</span>
+              </h1>
+              <p className="text-xs font-medium mt-0.5" style={{ color: 'rgba(255,255,255,0.6)' }}>
+                Secure Governance Portal
+              </p>
+            </div>
+          </div>
+
+          {/* Theme Toggle - Mobile Version */}
+          <button
+            onClick={toggleDark}
+            className="w-10 h-10 rounded-full flex items-center justify-center cursor-pointer transition-all duration-300"
             style={{
-              background: 'linear-gradient(135deg, #D4AF37 0%, #C5A028 100%)',
+              background: 'rgba(255, 255, 255, 0.1)',
+              border: '1px solid rgba(255, 255, 255, 0.2)',
+              backdropFilter: 'blur(8px)',
             }}
+            aria-label="Toggle theme"
           >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1E3A5F" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
-              <path d="M6 12v5c3 3 9 3 12 0v-5" />
-            </svg>
-          </div>
-          <div>
-            <h1 className="text-white font-serif font-bold text-lg leading-tight">
-              APJ Abdul Kalam <span style={{ color: '#D4AF37' }}>Technological University</span>
-            </h1>
-            <p className="text-xs font-medium mt-0.5" style={{ color: 'rgba(255,255,255,0.6)' }}>
-              Secure Governance Portal
-            </p>
-          </div>
+            {darkMode ? (
+              <Sun size={18} style={{ color: '#D4AF37' }} strokeWidth={2.2} />
+            ) : (
+              <Moon size={18} style={{ color: '#fff' }} strokeWidth={2.2} />
+            )}
+          </button>
         </div>
 
         {/* Right Login Form Column */}
-        <div className="w-full lg:flex-1 flex items-center justify-center">
+        <div className="w-full lg:flex-1 flex items-center justify-center relative">
+          {/* Theme Toggle - Desktop Version (hidden on small screens) */}
+          <button
+            onClick={toggleDark}
+            className="hidden lg:flex absolute top-8 right-8 z-50 w-11 h-11 rounded-full items-center justify-center cursor-pointer transition-all duration-300"
+            style={{
+              background: darkMode
+                ? 'rgba(255, 255, 255, 0.05)'
+                : 'rgba(30, 58, 95, 0.04)',
+              border: `1px solid ${darkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(30, 58, 95, 0.1)'}`,
+              backdropFilter: 'blur(10px)',
+              boxShadow: darkMode ? '0 0 15px rgba(212, 175, 55, 0.2)' : 'none',
+            }}
+            onMouseEnter={(e) => {
+              (e.currentTarget as HTMLButtonElement).style.transform = 'scale(1.1) rotate(15deg)';
+            }}
+            onMouseLeave={(e) => {
+              (e.currentTarget as HTMLButtonElement).style.transform = 'scale(1)';
+            }}
+            aria-label="Toggle theme"
+          >
+            {darkMode ? (
+              <Sun size={18} style={{ color: '#D4AF37' }} strokeWidth={2.2} />
+            ) : (
+              <Moon size={18} style={{ color: '#1E3A5F' }} strokeWidth={2.2} />
+            )}
+          </button>
           <LoginForm darkMode={darkMode} />
         </div>
       </main>

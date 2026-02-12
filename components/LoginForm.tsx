@@ -87,7 +87,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ darkMode }) => {
   }, [shakeField]);
 
   /* ── sliding role indicator ── */
-  useEffect(() => {
+  const updateIndicator = useCallback(() => {
     const idx = roles.indexOf(role);
     const btn = roleBtnRefs.current[idx];
     const indicator = indicatorRef.current;
@@ -97,7 +97,18 @@ const LoginForm: React.FC<LoginFormProps> = ({ darkMode }) => {
       indicator.style.top = `${btn.offsetTop}px`;
       indicator.style.height = `${btn.offsetHeight}px`;
     }
-  }, [role, roles, /* dependency on screen size might be needed strictly speaking, but usually rerender covers it */]);
+  }, [role, roles]);
+
+  useEffect(() => {
+    updateIndicator();
+    // Re-check after a short delay to ensure layout is settled
+    const t = setTimeout(updateIndicator, 100);
+    window.addEventListener('resize', updateIndicator);
+    return () => {
+      clearTimeout(t);
+      window.removeEventListener('resize', updateIndicator);
+    };
+  }, [updateIndicator]);
 
   const refreshCaptcha = useCallback(() => {
     setCaptchaCode(generateCaptcha());
@@ -283,7 +294,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ darkMode }) => {
 
       {/* ── Role Selector with sliding indicator ── */}
       <div
-        className="role-selector relative flex flex-col sm:flex-row p-1.5 rounded-[20px] sm:rounded-full mb-7 lg:mb-9 w-full max-w-sm mx-auto lg:mx-0"
+        className="role-selector relative flex flex-col sm:flex-row p-1.5 rounded-[20px] sm:rounded-full mb-7 lg:mb-9 w-full max-w-sm mx-auto lg:mx-0 gap-1 sm:gap-0"
         style={{ background: 'var(--bg-pill)', transition: 'background 0.3s ease' }}
       >
         {/* Sliding background indicator */}

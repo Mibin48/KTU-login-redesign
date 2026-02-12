@@ -498,12 +498,10 @@ button:focus-visible {
 
 .role-indicator {
   position: absolute;
-  top: 6px;
-  bottom: 6px;
   border-radius: 9999px;
   background: linear-gradient(135deg, var(--ktu-primary) 0%, #2C5282 100%);
   box-shadow: 0 4px 16px rgba(var(--ktu-primary-rgb), 0.25);
-  transition: left 0.3s var(--ease-spring), width 0.3s var(--ease-spring);
+  transition: left 0.3s var(--ease-spring), width 0.3s var(--ease-spring), top 0.3s var(--ease-spring), height 0.3s var(--ease-spring);
   z-index: 0;
   pointer-events: none;
 }

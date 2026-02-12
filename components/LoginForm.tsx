@@ -63,7 +63,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ darkMode }) => {
   const [captchaCode, setCaptchaCode] = useState(generateCaptcha());
   const [shakeField, setShakeField] = useState<string | null>(null);
   const [formDisabled, setFormDisabled] = useState(false);
-  const [showCaptcha, setShowCaptcha] = useState(false);
+  const [showCaptcha, setShowCaptcha] = useState(true);
 
   /* refs */
   const usernameRef = useRef<HTMLInputElement>(null);
